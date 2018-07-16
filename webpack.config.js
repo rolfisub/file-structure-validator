@@ -2,6 +2,7 @@ var path = require("path");
 module.exports = {
   entry: "./src/index.ts",
   mode:"production",
+  target: "node",
   module: {
     rules: [
       {
@@ -17,6 +18,6 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "fsv.js",
     library: "fsv",
-    libraryTarget: "umd"
+    libraryTarget: "commonjs"
   }
 };
