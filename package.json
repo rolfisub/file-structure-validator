@@ -1,0 +1,8 @@
+{
+  "name": "file-structure-validator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://rolfisub@github.com/rolfisub/file-structure-validator.git",
+  "author": "Rolf Bansbach <rolfbans@gmail.com",
+  "license": "MIT"
+}
