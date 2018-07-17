@@ -21,7 +21,7 @@ import Fsv from "file-structure-validator";
 //OR
 
 //ES5
-//var Fsv = require("file-structure-validator");
+//var Fsv = require("file-structure-validator").default;
 
 //Create validation structure:
 
