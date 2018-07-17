@@ -19,7 +19,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "fsv.js",
+    filename: "index.js",
     library: "fsv",
     libraryTarget: "commonjs"
   }
