@@ -22,6 +22,10 @@ describe('file structure validator', ()=> {
     expect(fsv2.validate()).to.have.property('valid').to.equal(true);
   });
 
+  /**
+   * FILE testing
+   */
+
   const fsv3 = new fsval({
     base: "./src/tests/dirtest",
     files:['testaaa.txt'],
@@ -60,6 +64,90 @@ describe('file structure validator', ()=> {
 
   it('multiple files exists', ()=> {
     expect(fsv6.validate()).to.have.property('valid').to.equal(true);
+  });
+
+  const fsv7 = new fsval({
+    base: "./src/tests/dirtest",
+    files:['test.txt', 'test2.txt', 'subdir/test3.txt'],
+    dirs: []
+  });
+
+  it('multiple files with subdir exists', ()=> {
+    expect(fsv7.validate()).to.have.property('valid').to.equal(true);
+  });
+
+  const fsv8 = new fsval({
+    base: "./src/tests/dirtest",
+    files:['test.txt', 'subdir/test3.txt', 'test2ss.txt' ],
+    dirs: []
+  });
+
+  it('multiple files within subdir, one does not exist', ()=> {
+    expect(fsv8.validate()).to.have.property('valid').to.equal(false);
+  });
+
+  /**
+   * DIR testing
+   */
+
+  const fsv9 = new fsval({
+    base: "./src/tests/dirtest",
+    files:[],
+    dirs: ['asds']
+  });
+
+  it('dir doesnt exist', ()=> {
+    expect(fsv9.validate()).to.have.property('valid').to.equal(false);
+  });
+
+  const fsv10 = new fsval({
+    base: "./src/tests/dirtest",
+    files:[],
+    dirs: ['subdir']
+  });
+
+  it('dir exist', ()=> {
+    expect(fsv10.validate()).to.have.property('valid').to.equal(true);
+  });
+
+  const fsv11 = new fsval({
+    base: "./src/tests/dirtest",
+    files:[],
+    dirs: ['asdasd', 'subdir']
+  });
+
+  it('one dir does not exist', ()=> {
+    expect(fsv11.validate()).to.have.property('valid').to.equal(false);
+  });
+
+  const fsv12 = new fsval({
+    base: "./src/tests/dirtest",
+    files:[],
+    dirs: ['subdir', 'subdirb']
+  });
+
+  it('multiple dirs exists', ()=> {
+    expect(fsv12.validate()).to.have.property('valid').to.equal(true);
+  });
+
+  const fsv13 = new fsval({
+    base: "./src/tests/dirtest",
+    files:[],
+    dirs: ['subdir', 'subdir/subdir2', 'subdir/subdir3']
+  });
+
+  it('multiple dirs with subdirs exists', ()=> {
+    expect(fsv13.validate()).to.have.property('valid').to.equal(true);
+  });
+
+  const fsv14 = new fsval({
+    base: "./src/tests/dirtest",
+    files:[],
+    dirs: ['subdira', 'subdir/subdir2', 'subdir/subdir3']
+  });
+
+  it('multiple files within subdir, one does not exist', ()=> {
+    expect(fsv14.validate()).to.have.property('valid').to.equal(false);
   });
 
 });

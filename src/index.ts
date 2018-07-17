@@ -17,6 +17,21 @@ export default class FSV {
         this.validate = this.validate.bind(this);
     }
 
+    private validateList(base: string, list: string[]): ValidationObject {
+      const itemResult: ValidationObject = {
+        valid: true,
+        msg: ''
+      };
+      list.forEach((item) => {
+        const fullItemPath = path.resolve(base, item);
+        if(itemResult.valid && !fs.existsSync(fullItemPath)) {
+          itemResult.valid = false;
+          itemResult.msg = "item does not exists: " + fullItemPath
+        }
+      });
+      return itemResult;
+    }
+
     public validate(): ValidationObject {
         const dir = path.resolve(this.config.base);
         //validate that base path exists
@@ -27,21 +42,19 @@ export default class FSV {
             };
         }
 
-        const fileResult: ValidationObject = {
-            valid: true,
-            msg: ''
-        };
-        this.config.files.forEach((file) => {
-            const fullFilePath = path.resolve(dir, file);
-            if(fileResult.valid && !fs.existsSync(fullFilePath)) {
-                fileResult.valid = false;
-                fileResult.msg = "file does not exists: " + fullFilePath
-            }
-        });
+        //files
+        const fileResult: ValidationObject = this.validateList(dir, this.config.files);
         if(!fileResult.valid) {
             return fileResult;
         }
 
+        //dirs
+        const dirsResult: ValidationObject = this.validateList(dir, this.config.dirs);
+        if(!dirsResult.valid) {
+            return dirsResult;
+        }
+
+        //everything checks out!
         return {
             valid: true,
             msg: ''
