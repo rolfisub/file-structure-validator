@@ -1,9 +1,9 @@
-interface ConfigObject {
+export interface ConfigObject {
     base: string;
     files: string[];
     dirs: string[];
 }
-interface ValidationObject {
+export interface ValidationObject {
     valid: boolean;
     msg: string;
 }
@@ -13,4 +13,3 @@ export default class FSV {
     private validateList;
     validate(): ValidationObject;
 }
-export {};

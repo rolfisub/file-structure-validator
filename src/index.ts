@@ -1,13 +1,13 @@
 import * as path from 'path';
 import * as fs from 'fs';
 
-interface ConfigObject {
+export interface ConfigObject {
     base: string;
     files: string[];
     dirs: string[];
 }
 
-interface ValidationObject {
+export interface ValidationObject {
     valid: boolean;
     msg: string;
 }
